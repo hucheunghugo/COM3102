@@ -1,14 +1,111 @@
 body {
+  background-color: #f2f2f2;
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column; /* Update */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.new-container {
+  width: 70%;
+  margin-bottom: 20px; /* Add margin-bottom */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Add margin-bottom */
+}
+
+/*Home Nav Bar CSS*/
+
+.new-container .navbar {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.new-container .navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.new-container .username {
+  font-weight: bold;
+}
+
+.new-container .navbar-mid{
+  display: flex;
+  align-items: center;
+}
+
+.new-container .navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.new-container .nav-button {
+  --b: 2.5px;   
+  --s: .4em; 
+  --color: #373B44;
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+  
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 200px;
+}
+
+.new-container .nav-button:hover,
+.new-container .nav-button:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+.new-container .nav-button:active {
+  background: var(--color);
+  color: #fff;
+}
+
+.new-container .logout-button {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .chat-container {
-  max-width: 600px;
+  width: 600px;
   margin: 0 auto;
   display: flex;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-top: 20px; /* Add margin-bottom */
 }
+
+
 
 .contacts {
   flex-basis: 30%;
