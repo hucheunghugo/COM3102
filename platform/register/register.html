@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moodle Registration</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+        function redirectToRegister() {
+            window.location.replace("../");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Moodle Registration</h2>
+        <form action="register.php" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="Programme" placeholder="Programme ( If u are HSU Student )" >
+            <input type="text" name="Year-Of-Entrance" placeholder="Year Of Entrance ( If u are HSU Student )" >
+            <input type="text" name="SID" placeholder="Student ID ( If u are HSU Student )" >
+            <input type="submit" value="Register">
+            <input type="button" onclick="redirectToRegister()" value="Go back to Login">
+        </form>
+    </div>
+</body>
+</html>

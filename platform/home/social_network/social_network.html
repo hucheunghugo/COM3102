@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Web</title>
+  <link rel="stylesheet" href="social_network.css">
+</head>
+<body>
+  <div class="chat-container">
+    <div class="contacts">
+      <div class="contact" onclick="selectContact('John')">
+        <div class="contact-name">John</div>
+        <div class="contact-status">Online</div>
+      </div>
+      <div class="contact" onclick="selectContact('Jane')">
+        <div class="contact-name">Jane</div>
+        <div class="contact-status">Offline</div>
+      </div>
+      <!-- Add more contacts here -->
+    </div>
+    <div class="chat">
+      <div id="chat-messages">
+        <!-- Messages will be dynamically added here -->
+      </div>
+      
+      <div class="input-container">
+        <input type="text" placeholder="Type your message">
+        <button>Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="social_network.js"></script>
+</body>
+</html>
