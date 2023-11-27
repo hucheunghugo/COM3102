@@ -8,52 +8,48 @@
         function redirectToLogin() {
           window.location.replace("../");
         }
-        
     </script>
 </head>
 <body>
     <div class="new-container">
-
         <div class="navbar">
             <div class="navbar-left">
-              <span class="username">John Doe</span>
+                <span class="username">On9</span>
             </div>
             <form action="home.php" method="post">
-              <div class="navbar-mid">
-                  <button type="submit" name ="social" class="nav-button">Social Networking</button>
-                  <button type="submit" name ="grade" class="nav-button">Grade Database</button>
-                  <button type="submit" name ="info" class="nav-button">My Information</button>
-              </div>
+                <div class="navbar-mid">
+                    <button type="submit" name="social" class="nav-button">Social Networking</button>
+                    <button type="submit" name="grade" class="nav-button">Grade Database</button>
+                    <button type="submit" name="info" class="nav-button">My Information</button>
+                </div>
             </form>
-
             <div class="navbar-right">
                 <button class="logout-button" onclick="redirectToLogin()">Log Out</button>
             </div>
         </div>
-
         <div class="functionality">
             <h2>Calendar</h2>
             <div class="calendar">
                 <div class="calendar-header">
-                  <button class="prev-btn">&lt;</button>
-                  <div class="month-year"></div>
-                  <button class="next-btn">&gt;</button>
+                    <button class="prev-btn">&lt;</button>
+                    <div class="month-year"></div>
+                    <button class="next-btn">&gt;</button>
                 </div>  
                 <table class="calendar-table">
-                  <thead>
-                    <tr>
-                      <th>Sun</th>
-                      <th>Mon</th>
-                      <th>Tue</th>
-                      <th>Wed</th>
-                      <th>Thu</th>
-                      <th>Fri</th>
-                      <th>Sat</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
+                    <thead>
+                        <tr>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
                 </table>
-              </div>
+            </div>
         </div>
     </div>
 </body>

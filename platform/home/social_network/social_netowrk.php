@@ -1,7 +1,7 @@
 <?php
 
-if (isset($_POST['social'])) {
-    header("Location: social_network/social_network.html");
+if (isset($_POST['calendar'])) {
+    header("Location: ../home.html");
     exit;
 } elseif (isset($_POST['grade'])) {
     // Grade Database button was clicked

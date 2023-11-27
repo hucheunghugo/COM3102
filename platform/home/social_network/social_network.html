@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WhatsApp Web</title>
   <link rel="stylesheet" href="social_network.css">
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    function redirectToLogin() {
+      window.location.replace("../../");
+    }
+  </script>
 </head>
 <body>
 
@@ -13,9 +19,9 @@
       <div class="navbar-left">
         <span class="username">John Doe</span>
       </div>
-      <form action="home.php" method="post">
+      <form action="social_netowrk.php" method="post">
         <div class="navbar-mid">
-            <button type="submit" name ="social" class="nav-button">Social Networking</button>
+            <button type="submit" name ="calendar" class="nav-button">Calendar</button>
             <button type="submit" name ="grade" class="nav-button">Grade Database</button>
             <button type="submit" name ="info" class="nav-button">My Information</button>
         </div>
