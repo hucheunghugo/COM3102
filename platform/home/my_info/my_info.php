@@ -14,7 +14,9 @@ if ($result) {
     $row = $result->fetch_assoc();
     $username = $row['username'];
     $email = $row['email'];
-    // Add more fields if needed
+    $programme = $row['programme'];
+    $year_of_entrance = $row['year_of_entrance'];
+    $sid = $row['sid'];
 } else {
     echo "Error executing the query: " . $conn->error;
 }
@@ -86,7 +88,24 @@ if ($result) {
                     <th>Email</th>
                     <td><?php echo $email; ?></td>
                 </tr>
-                <!-- Add more fields if needed -->
+                <?php if (!empty($programme)) { ?>
+                    <tr>
+                        <th>Programme</th>
+                        <td><?php echo $programme; ?></td>
+                    </tr>
+                <?php } ?>
+                <?php if (!empty($year_of_entrance)) { ?>
+                    <tr>
+                        <th>Year of Entrance</th>
+                        <td><?php echo $year_of_entrance; ?></td>
+                    </tr>
+                <?php } ?>
+                <?php if (!empty($sid)) { ?>
+                    <tr>
+                        <th>SID</th>
+                        <td><?php echo $sid; ?></td>
+                    </tr>
+                <?php } ?>
             </table>
         </div>
     </div>
