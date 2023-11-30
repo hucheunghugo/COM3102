@@ -7,42 +7,6 @@ function sanitize($input) {
     return mysqli_real_escape_string($conn, trim($input));
 }
 
-// Function to generate a random token
-function generateToken() {
-    return bin2hex(random_bytes(16)); // Generate a 32-character random token
-}
-
-// Check if the token is valid
-function validateToken($token) {
-    global $conn;
-    $token = sanitize($token);
-    $sql = "SELECT * FROM users WHERE token = '$token'";
-    $result = mysqli_query($conn, $sql);
-    return ($result && mysqli_num_rows($result) > 0);
-}
-
-// Check if the token is present in the request headers
-function getTokenFromHeaders() {
-    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-        $authorizationHeader = $_SERVER['HTTP_AUTHORIZATION'];
-        $token = str_replace('Bearer ', '', $authorizationHeader);
-        return $token;
-    }
-    return null;
-}
-
-// Check if the token is valid for the current request
-function authenticateRequest() {
-    $token = getTokenFromHeaders();
-
-    // Validate the token
-    if ($token && validateToken($token)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the form data
@@ -52,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $programme = sanitize($_POST['Programme']);
     $yearOfEntrance = sanitize($_POST['Year-Of-Entrance']);
     $studentId = sanitize($_POST['SID']);
-    $token = generateToken();
 
     // Check if the username already exists in the database
     $sql = "SELECT * FROM users WHERE username = '$username'";
@@ -80,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "<script>alert('Student ID already exists. Please choose a different one.');</script>";
                 } else {
                     // Insert the data into the database
-                    $sql = "INSERT INTO users (email, username, password, token, programme, year_of_entrance, sid) 
-                            VALUES ('$email', '$username', '$password', '$token', '$programme', '$yearOfEntrance', '$studentId')";
+                    $sql = "INSERT INTO users (email, username, password, programme, year_of_entrance, sid) 
+                            VALUES ('$email', '$username', '$password', '$programme', '$yearOfEntrance', '$studentId')";
 
                     // Execute the SQL query
                     if (mysqli_query($conn, $sql)) {
                         // Registration successful
                         echo "<script>alert('Registration successful!');</script>";
-                        header("Location: ../");
+                        header("Location: ../login/login.php");
                         exit;
                     } else {
                         // Registration failed
@@ -96,14 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } else {
                 // Insert the data into the database without checking for duplicate student ID
-                $sql = "INSERT INTO users (email, username, password, token, programme, year_of_entrance, sid) 
-                        VALUES ('$email', '$username', '$password', '$token', NULL, NULL, NULL)";
+                $sql = "INSERT INTO users (email, username, password, programme, year_of_entrance, sid) 
+                        VALUES ('$email', '$username', '$password', NULL, NULL, NULL)";
 
                 // Execute the SQL query
                 if (mysqli_query($conn, $sql)) {
                     // Registration successful
                     echo "<script>alert('Registration successful!');</script>";
-                    header("Location: ../");
+                    header("Location: ../login/login.php");
                     exit;
                 } else {
                     // Registration failed
@@ -115,13 +78,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Close the database connection
     mysqli_close($conn);
-} else {
-    // Check if the token is valid for the current request
-    if (!authenticateRequest()) {
-        // Token is invalid or missing, return an error response
-        http_response_code(401);
-        echo 'Unauthorized';
-        exit();
-    }
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moodle Registration</title>
+    <link rel="stylesheet" type="text/css" href="../index.css">
+    <script>
+        function redirectToLogin() {
+            window.location.replace("../");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Moodle Registration</h2>
+        <form action="register.php" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="Programme" placeholder="Programme ( If u are HSU Student )" >
+            <input type="text" name="Year-Of-Entrance" placeholder="Year Of Entrance ( If u are HSU Student )" >
+            <input type="text" name="SID" placeholder="Student ID ( If u are HSU Student )" >
+            <input type="submit" value="Register">
+            <input type="button" onclick="redirectToLogin()" value="Go back to Login">
+        </form>
+    </div>
+</body>
+</html>
